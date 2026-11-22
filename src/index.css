@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --c-base: 12 12 17;
+  --c-surface: 18 18 26;
+  --c-raised: 24 24 34;
+  --c-line: 39 39 53;
+  --c-ink: 233 233 240;
+  --c-muted: 148 148 168;
+  --c-accent: 139 92 246;
+  --c-accent2: 59 130 246;
+  --c-ok: 52 211 153;
+  --c-warn: 251 191 36;
+  --c-danger: 248 113 113;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  --radius: 0.9rem;
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-base text-ink font-sans antialiased;
+  background-image:
+    radial-gradient(70rem 40rem at 12% -12%, rgb(var(--c-accent) / 0.10), transparent 60%),
+    radial-gradient(60rem 34rem at 100% 0%, rgb(var(--c-accent2) / 0.08), transparent 55%);
+  background-attachment: fixed;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--c-line)) transparent;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--c-line));
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--c-accent) / 0.7);
+  outline-offset: 2px;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-line/80 bg-surface/80 shadow-card backdrop-blur-sm;
+  }
+  .input {
+    @apply w-full rounded-xl border border-line bg-raised/70 px-3 py-2 text-sm text-ink
+      placeholder:text-muted/70 focus:border-accent/60 focus:outline-none;
+  }
+  .label {
+    @apply mb-1.5 block text-[11px] font-medium uppercase tracking-wider text-muted;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-line bg-raised/80 px-3.5 py-2 text-sm font-medium text-ink transition
+      hover:border-accent/40 hover:bg-raised disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply border-transparent bg-accent text-white hover:bg-accent/90;
+  }
+  .btn-ghost {
+    @apply border-transparent bg-transparent hover:bg-raised/70;
+  }
+  .btn-danger {
+    @apply border-transparent bg-danger/15 text-danger hover:bg-danger/25;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full border border-line bg-raised/60 px-2.5 py-0.5 text-[11px] text-muted;
+  }
+  .prose-life {
+    @apply text-sm leading-relaxed text-ink/90;
+  }
+  .prose-life h1 { @apply mt-4 mb-2 text-lg font-semibold text-ink; }
+  .prose-life h2 { @apply mt-4 mb-2 text-base font-semibold text-ink; }
+  .prose-life h3 { @apply mt-3 mb-1.5 text-sm font-semibold text-ink; }
+  .prose-life p { @apply my-2; }
+  .prose-life ul { @apply my-2 list-disc pl-5; }
+  .prose-life ol { @apply my-2 list-decimal pl-5; }
+  .prose-life a { @apply text-accent underline underline-offset-2; }
+  .prose-life code {
+    @apply rounded bg-raised px-1 py-0.5 font-mono text-[12px] text-accent2;
+  }
+  .prose-life pre {
+    @apply my-3 overflow-x-auto rounded-xl border border-line bg-base/80 p-3 font-mono text-[12px];
+  }
+  .prose-life blockquote { @apply my-2 border-l-2 border-accent/50 pl-3 text-muted; }
+  .prose-life table { @apply my-3 w-full border-collapse text-xs; }
+  .prose-life th,
+  .prose-life td { @apply border border-line px-2 py-1 text-left; }
+}
+
+.recharts-cartesian-axis-tick text { fill: rgb(var(--c-muted)); font-size: 11px; }
+.recharts-tooltip-wrapper { outline: none !important; }
