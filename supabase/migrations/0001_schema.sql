@@ -62,7 +62,7 @@ create table public.profiles (
   full_name text,
   avatar_url text,
   bio text,
-  current_role text,
+  user_role text,
   career_objective text,
   long_term_ambition text,
   short_term_goals text,
